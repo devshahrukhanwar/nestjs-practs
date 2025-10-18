@@ -13,11 +13,9 @@ export class CustomerService {
       .leftJoinAndSelect('customer.machines', 'machine'); // Include the machines relation
 
     if (search) {
-      queryBuilder
-        .where('customer.name ILIKE :search', {
-          search: `%${search}%`,
-        })
-        .relation('machines');
+      queryBuilder.where('customer.name ILIKE :search', {
+        search: `%${search}%`,
+      });
     }
 
     return queryBuilder.getMany();

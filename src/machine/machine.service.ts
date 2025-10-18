@@ -18,10 +18,12 @@ export class MachineService {
     const customerRepository = this.dataSource.getRepository(Customer);
 
     let customer: Customer | null = null;
+
     if (machineData.customerId) {
       customer = await customerRepository.findOneBy({
         id: machineData.customerId,
       });
+
       if (!customer) {
         throw new Error(`Customer with ID ${machineData.customerId} not found`);
       }
@@ -29,7 +31,7 @@ export class MachineService {
 
     const machine = machineRepository.create({
       ...machineData,
-      customer: customer || undefined, // Associate the resolved customer entity or leave undefined
+      customer: customer || undefined,
     });
 
     return machineRepository.save(machine);
