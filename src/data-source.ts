@@ -8,5 +8,6 @@ export const AppDataSource = new DataSource({
   password: 'nestjs123',
   database: 'nestjs_learning',
   entities: [__dirname + '/**/*.entity{.ts,.js}'],
+  migrations: [__dirname + '/migrations/*{.ts,.js}'], // Added migrations path
   synchronize: false, // Disabled to prevent automatic schema synchronization
 });
